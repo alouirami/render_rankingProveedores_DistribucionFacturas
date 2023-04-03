@@ -57,11 +57,14 @@ bar_chart.update_layout(title_text='FACTURAS REVISADAS', title_x=0.5)
 
 
 
+bar_chart2 = px.bar(df, x='Cantidad facturas', y='Proveedor', orientation='h', title='Distribución de facturas por proveedor')
+
 df_ranking = df.sort_values(by='Cantidad facturas', ascending=False)
 df_ranking['Ranking'] = range(1, len(df_ranking) + 1)
 
 ranking_chart = px.bar(df_ranking, x='Cantidad facturas', y='Proveedor', orientation='h', title='Ranking de proveedores por cantidad de facturas')
 ranking_chart.update_yaxes(categoryorder='total ascending')
+
 
 # Crear la aplicación Dash
 app = dash.Dash(__name__)
@@ -73,7 +76,9 @@ app.layout = html.Div([
     html.H1('INFORME FACTURAS', style={'textAlign': 'center'}),
     dcc.Graph(figure=pie_chart, id='pie-chart'),
     dcc.Graph(figure=bar_chart, id='bar-chart'),
-    dcc.Graph(figure=tab_chart, id='tab-chart')
+    dcc.Graph(figure=tab_chart, id='tab-chart'),
+    dcc.Graph(figure=bar_chart2, id='bar-chart2'),
+    dcc.Graph(figure=ranking_chart, id='ranking-chart')
 ])
 
 # Ejecutar la aplicación
