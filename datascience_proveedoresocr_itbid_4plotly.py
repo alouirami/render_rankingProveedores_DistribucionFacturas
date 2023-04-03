@@ -67,11 +67,11 @@ ranking_chart.update_yaxes(categoryorder='total ascending')
 
 # Crear la aplicación Dash
 app = dash.Dash(__name__)
-
+server = app.server
 
 # Diseño de la aplicación
 app.layout = html.Div([
-    html.A(html.Button("informe facturas"), href="https://itbid-facturas-informe.onrender.com/"),
+    html.A(html.Button("informe facturas"), href="https://itbid-rankingproveedores.onrender.com/"),
     html.H1('INFORME PROVEEDORES', style={'textAlign': 'center'}),
     dcc.Graph(figure=pie_chart, id='pie-chart'),
     dcc.Graph(figure=bar_chart, id='bar-chart'),
